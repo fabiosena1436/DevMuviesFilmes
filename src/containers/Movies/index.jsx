@@ -1,0 +1,95 @@
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+import Button from "../../components/Button"
+import Slider from "../../components/Slider"
+import { getImages } from "../../utils/getImages"
+import Modal from "../../components/Modal"
+
+
+import {
+    getMovies,
+    getPersonPopular,
+    getsetNowPlayingr,
+    getTopMovies,
+} from "../../services/getDate"
+
+import {
+    Background,
+    Container,
+    ContainerButtons,
+    Info,
+    Poster
+} from "./styles"
+
+function Movie() {
+    const [showModal, setShowModal] = useState(false)
+    const [movie, setMovie] = useState()
+    const [topMovies, setTopMovies] = useState()
+    const [topPersonPopular, setPersonPopular] = useState()
+    const [topNowPlaying, setNowPlayingr] = useState()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        
+
+        async function getAllData() {
+
+            Promise.all([
+                getMovies(),
+                getTopMovies(),
+               
+                getsetNowPlayingr(),
+                getPersonPopular()
+            ])
+                .then(([Movie, TopMovies, NowPlayingr, PersonPopular]) => {
+                    setMovie(Movie)
+                    setTopMovies(TopMovies)
+                   
+                    setNowPlayingr(NowPlayingr)
+                    setPersonPopular(PersonPopular)
+                })
+                .catch((error) => console.error(error))
+
+        }
+        getAllData()
+    }, [])
+
+
+    return (
+        <>
+
+
+            {movie && (
+                
+                <Background img={getImages(movie.backdrop_path)}>
+                    {showModal && (
+                        <Modal movieId={movie.id} setShowModal={setShowModal} />
+                    )}
+                    <Container>
+                        <Info>
+                            <h1>{movie.title}</h1>
+                            <p>{movie.overview}</p>
+                            <ContainerButtons>
+                                <Button red={true} onClick={() => navigate(`/detalhe/${movie.id}`)}>Assista agora</Button>
+                                <Button onClick={() => setShowModal(true)} red={false}>Assista ao Trailer</Button>
+                            </ContainerButtons>
+                        </Info>
+                        <Poster>
+                            <img src={getImages(movie.poster_path)} alt="imagem-do-poster" />
+                        </Poster>
+                    </Container>
+                </Background>
+            )}
+
+            {topMovies &&  <Slider info={topMovies} title={'Top Filmes'}  />}
+            {topNowPlaying && <Slider info={topNowPlaying} title={'Exibindo agora'} />}
+            {topPersonPopular && <Slider info={topPersonPopular} title={'Top Artistas'} />}
+
+
+
+        </>
+    )
+}
+
+export default Movie
