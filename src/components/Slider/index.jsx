@@ -25,6 +25,7 @@ function Slider({ info, title  }) {
                         <Card 
                             item={item}
                             onClick={handleCardClick}
+                           
                         />
                     </SwiperSlide>
                 ))}

@@ -1,27 +1,9 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components"
 
 const scale = keyframes`
-  from{
-    transform:scale(0)
-  }
-  
-  to{
-    transform:scale(1)
-    }
-`;
-
-const slideInBckTop = keyframes`
-  0% {
-    -webkit-transform: translateZ(700px) translateY(-300px);
-    transform: translateZ(700px) translateY(-300px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0) translateY(0);
-    transform: translateZ(0) translateY(0);
-    opacity: 1;
-  }
-`;
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+`
 
 export const Background = styled.div`
   background-image: url(${(props) => props.image});
@@ -38,7 +20,7 @@ export const Background = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: (0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   &::after {
@@ -47,55 +29,66 @@ export const Background = styled.div`
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 140px;
-    background-image: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+    height: 150px;
+    background-image: linear-gradient(to top, #0f0f0f, rgba(0, 0, 0, 0));
   }
-`;
+
+  @media (max-width: 768px) {
+    height: 40vh;
+  }
+`
+
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: 100%;
   max-width: 1500px;
-  margin-top: -100px;
-`;
+  margin-top: -150px;
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: -200px;
+  }
+`
 
 export const Cover = styled.div`
   padding: 20px;
   display: flex;
   align-items: flex-start;
   height: 100%;
-  z-index: 2;
+  z-index: 99;
 
   img {
     width: 450px;
     border-radius: 30px;
-    box-shadow: rbg(100 100 111 / 20%) 0px 7px 29px 0px;
+    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
     animation: ${scale} 0.5s linear;
   }
-  @media (max-width: 430px) {
-    display: none;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
   }
-`;
+`
 
 export const Info = styled.div`
   padding: 20px;
   width: 50%;
-  z-index: 2;
+  z-index: 99;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 
   h2 {
     font-size: 50px;
-    font-weight: 700;
+    font-weight: 400;
     color: #ffffff;
-    animation: ${scale} 0.6s ease-in;
-
-    @media (max-width: 430px) {
-      text-align: center;
-      font-size: 40px;
-    }
   }
 
   p {
@@ -103,21 +96,23 @@ export const Info = styled.div`
     color: #ffffff;
     margin-top: 20px;
     margin-bottom: 30px;
+  }
 
-    -webkit-animation: ${slideInBckTop} 1.6s
-      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: ${slideInBckTop} 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
 
-    @media (max-width: 430px) {
+    h2 {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 14px;
       text-align: justify;
     }
   }
-
-  @media (max-width: 430px) {
-    justify-content: center;
-    width: 100%;
-  }
-`;
+`
 
 export const ContainerMovies = styled.div`
   display: flex;
@@ -134,10 +129,6 @@ export const ContainerMovies = styled.div`
     width: 100%;
     height: 100%;
     margin: 20px 0;
-
-    @media (max-width: 430px) {
-      justify-content: center;
-    }
   }
 
   h4 {
@@ -147,12 +138,19 @@ export const ContainerMovies = styled.div`
     margin-bottom: 10px;
   }
 
-  iframe {
-    border: none;
+  @media (max-width: 768px) {
+    padding: 10px;
 
-    @media (max-width: 430px) {
-      width: 100%;
-      height: 280px;
+    div {
+      margin: 10px 0;
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+
+    iframe {
+      height: 250px !important;
     }
   }
-`;
+`

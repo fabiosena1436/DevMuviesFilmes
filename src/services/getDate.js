@@ -91,3 +91,57 @@ export async function getMovieById(movieId) {
     return data
 
 }
+
+
+
+
+export async function getSeriesById(serieId) {
+    try {
+      const { data } = await api.get(`tv/${serieId}`);
+  
+      return data;
+    } catch (error) {
+      console.error('Rota: "tv/:Id" - Erro ao buscar serie: ', error);
+    }
+  }
+  export async function getSerieVideos(serieId) {
+    try {
+      const {
+        data: { results }
+      } = await api.get(`tv/${serieId}/videos`);
+  
+      return results;
+    } catch (error) {
+      console.error(
+        'Rota: "tv/:Id/videos" - Erro ao buscar os trailers: ',
+        error
+      );
+    }
+  }
+  export async function getSerieCredits(serieId) {
+    try {
+      const {
+        data: { cast }
+      } = await api.get(`tv/${serieId}/credits`);
+  
+      return cast;
+    } catch (error) {
+      console.error('Rota: "tv/:Id/credits" - Erro ao buscar elenco: ', error);
+    }
+  }
+  export async function getSerieSimilar(serieId) {
+    try {
+      const {
+        data: { results }
+      } = await api.get(`tv/${serieId}/similar`);
+  
+      return results;
+    } catch (error) {
+      console.error(
+        'Rota: "tv/:Id/similar" - Erro ao buscar series similares: ',
+        error
+      );
+    }
+  }
+  
+  
