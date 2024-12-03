@@ -76,7 +76,7 @@ function Series() {
                             <h1>{featuredShow.name}</h1>
                             <p>{featuredShow.overview}</p>
                             <ContainerButtons>
-                                <Button red={true} onClick={() => navigate(`/detalhe/${featuredShow.id}`)}>
+                                <Button red={true} onClick={() => navigate(`/serie/${featuredShow.id}`)}>
                                     Assista agora
                                 </Button>
                                 <Button onClick={() => setShowModal(true)} red={false}>

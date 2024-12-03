@@ -93,55 +93,28 @@ export async function getMovieById(movieId) {
 }
 
 
+//  Busca um serie plo ID
 
+export async function getTvSeriesById(seriesId) {
+  const { data } = await api.get(`/tv/${seriesId}`)
+  return data
+}
 
-export async function getSeriesById(serieId) {
-    try {
-      const { data } = await api.get(`tv/${serieId}`);
-  
-      return data;
-    } catch (error) {
-      console.error('Rota: "tv/:Id" - Erro ao buscar serie: ', error);
-    }
-  }
-  export async function getSerieVideos(serieId) {
-    try {
-      const {
-        data: { results }
-      } = await api.get(`tv/${serieId}/videos`);
-  
-      return results;
-    } catch (error) {
-      console.error(
-        'Rota: "tv/:Id/videos" - Erro ao buscar os trailers: ',
-        error
-      );
-    }
-  }
-  export async function getSerieCredits(serieId) {
-    try {
-      const {
-        data: { cast }
-      } = await api.get(`tv/${serieId}/credits`);
-  
-      return cast;
-    } catch (error) {
-      console.error('Rota: "tv/:Id/credits" - Erro ao buscar elenco: ', error);
-    }
-  }
-  export async function getSerieSimilar(serieId) {
-    try {
-      const {
-        data: { results }
-      } = await api.get(`tv/${serieId}/similar`);
-  
-      return results;
-    } catch (error) {
-      console.error(
-        'Rota: "tv/:Id/similar" - Erro ao buscar series similares: ',
-        error
-      );
-    }
-  }
-  
-  
+export async function getTvSeriesVideos(seriesId) {
+  const {
+      data: { results }
+  } = await api.get(`/tv/${seriesId}/videos`)
+  return results
+}
+
+export async function getTvSeriesCredits(seriesId) {
+  const { data: { cast } } = await api.get(`/tv/${seriesId}/credits`)
+  return cast
+}
+
+export async function getTvSeriesSimilar(seriesId) {
+  const {
+      data: { results }
+  } = await api.get(`/tv/${seriesId}/similar`)
+  return results
+}

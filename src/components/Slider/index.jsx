@@ -3,12 +3,18 @@ import { Container } from "./styles"
 import Card from "../Card"
 import { useNavigate } from 'react-router-dom'
 
-
-function Slider({ info, title  }) {
+function Slider({ info, title }) {
     const navigate = useNavigate()
 
-    const handleCardClick = (id) => {
-        navigate(`/detalhe/${id}`)
+    const handleCardClick = (item) => {
+        if (item.title) {
+            navigate(`/detalhe/${item.id}`)
+        } else if (item.name) {
+
+            navigate(`/serie/${item.id}`)
+        } else {
+            navigate(`/detalhe/${item.id}`)
+        }
     }
 
     return (
@@ -22,10 +28,9 @@ function Slider({ info, title  }) {
             >
                 {info.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <Card 
+                        <Card
                             item={item}
-                            onClick={handleCardClick}
-                           
+                            onClick={() => handleCardClick(item)}
                         />
                     </SwiperSlide>
                 ))}
