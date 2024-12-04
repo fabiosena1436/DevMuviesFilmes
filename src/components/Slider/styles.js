@@ -16,7 +16,6 @@ export const Container = styled.div`
 
    .swiper-wrapper{
         display: flex;
-
         img{
             width: 300px;
             border-radius: 20px;
@@ -29,6 +28,7 @@ export const Container = styled.div`
 
   }
    }
+
 
 `
 

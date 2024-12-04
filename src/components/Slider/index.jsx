@@ -25,6 +25,7 @@ function Slider({ info, title }) {
                 spaceBetween={10}
                 slidesPerView={'auto'}
                 className="swiper"
+               
             >
                 {info.map((item, index) => (
                     <SwiperSlide key={index}>
