@@ -11,6 +11,8 @@ export const Container = styled.div`
     display: flex;
     margin-top: 30px;
     gap: 10px;
+    overflow-x: hidden;
+    width: 100%;
 
     div {
         display: flex;
@@ -19,10 +21,18 @@ export const Container = styled.div`
 
     p {
         color: #ffffff;
+        @media (max-width: 768px) {
+              font-size: 0.6rem;
+              
+            } 
     }
 
     img {
         height: 200px;
+        @media (max-width: 768px) {
+              height: 90px;
+              
+            } 
     }
 `
 
