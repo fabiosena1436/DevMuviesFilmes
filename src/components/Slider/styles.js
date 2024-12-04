@@ -5,7 +5,8 @@ export const Container = styled.div`
 
     background: #000;
     padding: 0 20px;
-
+    overflow-x: hidden;
+    width: 100%;
 
     h2{
         color: #ffffff;
@@ -22,11 +23,11 @@ export const Container = styled.div`
             @media (max-width: 1024px) {
              border-radius: 10px;
             }
-    @media (max-width: 768px) {
-        max-width: 150px;
-    }
-
-  }
+            @media (max-width: 768px) {
+              max-width: 150px;
+              
+            }    
+        }
    }
 
 
